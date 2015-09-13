@@ -1,0 +1,61 @@
+#!/usr/bin/env ruby
+require_relative "../lib/starkiller"
+
+#TODO - load this from JSON
+character = {
+  name: "Whatsisname Starkiller",
+  owner: "onefunkymonkey",
+  species: "Human",
+  career: "Bounty Huntin' Force User",
+  specializations: "Smuggler, Doctor, Priest",
+  characteristic_brawn: 1,
+  characteristic_agility: 2,
+  characteristic_cunning: 3,
+  characteristic_presence: 4,
+  characteristic_willpower: 5,
+  characteristic_intellect: 6,
+  skills: {
+    general: [
+      {name: "Astrogation (Int)", is_career: false, rank: 0, ability: 4},
+      {name: "Athletics (Br)", is_career: false, rank: 0, ability: 4},
+      {name: "Charm (Pr)", is_career: false, rank: 0, ability: 4},
+      {name: "Coercion (Will)", is_career: true, rank: 2, ability: 2, proficiency: 2},
+      {name: "Computers (Int)", is_career: false, rank: 1, ability: 1, proficiency: 2},
+      {name: "Cool (Pr)", is_career: false, rank: 0, ability: 1},
+      {name: "Coordination (Ag)", is_career: false, rank: 1, ability: 1},
+      {name: "Deception (Cun)", is_career: false, rank: 1, ability: 1},
+      {name: "Leadership (Pr)", is_career: false, rank: 0, ability: 3},
+      {name: "Mechanics (Int)", is_career: false, rank: 0, ability: 3},
+      {name: "Medicine (Intellect)", is_career: false, rank: 0, ability: 2},
+      {name: "Negotiation (Pr)", is_career: false, rank: 0, ability: 2},
+      {name: "Perception (Cun)", is_career: false, rank: 0, ability: 2},
+      {name: "Piloting: Planetary (Ag)", is_career: false, rank: 0, ability: 2},
+      {name: "Piloting: Space (Ag)", is_career: false, rank: 0, ability: 2},
+      {name: "Resilience (Br)", is_career: false, rank: 0, ability: 2},
+      {name: "Skulduggery (Cun)", is_career: false, rank: 0, ability: 2},
+      {name: "Stealth (Ag)", is_career: false, rank: 0, ability: 2},
+      {name: "Streetwise (Cun)", is_career: false, rank: 0, ability: 2},
+      {name: "Survival (Cun)", is_career: false, rank: 0, ability: 2},
+      {name: "Vigilance (Will)", is_career: false, rank: 0, ability: 2},
+    ],
+    combat: [
+      {name: "Brawl (Br)", is_career: false, rank: 0, ability: 2},
+      {name: "Gunnery (Ag)", is_career: false, rank: 1, ability: 2},
+      {name: "Lightsaber (Br)", is_career: false, rank: 0, ability: 2},
+      {name: "Melee (Br)", is_career: false, rank: 0, ability: 2},
+      {name: "Ranged: Light (Ag)", is_career: false, rank: 0, ability: 2},
+      {name: "Ranged: Heavy (Ag)", is_career: false, rank: 0, ability: 2},
+    ],
+    knowledge: [
+      {name: "Core Worlds (Int)", is_career: false, rank: 0, ability: 2},
+      {name: "Education (Int)", is_career: false, rank: 0, ability: 2},
+      {name: "Lore (Int)", is_career: false, rank: 0, ability: 2},
+      {name: "Outer Rim (Int)", is_career: false, rank: 0, ability: 2},
+      {name: "Underworld (Int)", is_career: false, rank: 0, ability: 2},
+      {name: "Warfare (Int)", is_career: false, rank: 0, ability: 2},
+      {name: "Xenology (Int)", is_career: false, rank: 0, ability: 2},
+    ]
+  }
+}
+
+Starkiller.render(character)
