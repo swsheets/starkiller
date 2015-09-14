@@ -4,6 +4,8 @@ module Starkiller
       include Starkiller::Component
       extend Starkiller::Dice
 
+      COMPONENT_LEFT = 390
+
       SKILL_LABEL_OFFSET = 8
       SKILL_NAME_LEFT = 4
       SKILL_CAREER_LEFT = 78
@@ -17,9 +19,9 @@ module Starkiller
       class << self
         def render(pdf, character)
           within(pdf,
-            top: DOCUMENT_TOP - 45,
-            left: 390,
-            width: DOCUMENT_WIDTH - 390,
+            top: DOCUMENT_TOP - 44,
+            left: COMPONENT_LEFT,
+            width: DOCUMENT_WIDTH - COMPONENT_LEFT,
             # 22.3 is the height of everything else in the table aside from the skill length
             height: 22.3 + (character[:skills][:general].length + character[:skills][:combat].length + character[:skills][:knowledge].length) * SKILL_HEIGHT
           ) do
