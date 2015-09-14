@@ -138,6 +138,24 @@ module Starkiller
             size: 7.0,
             font: FONT_MINOR_TEXT
           )
+
+          if(skill[:is_career])
+            write(pdf, "X",
+              top: vertical_offset,
+              left: SKILL_CAREER_LEFT + 5,
+              width: 20,
+              size: 7.0,
+              font: FONT_MAJOR_TEXT
+            )
+          end
+
+          write(pdf, skill[:rank].to_s,
+            top: vertical_offset,
+            left: SKILL_RANK_LEFT + 2.5,
+            width: 20,
+            size: 7.0,
+            font: FONT_MINOR_TEXT
+          )
         end
 
         def draw_skill_line(pdf, vertical_offset, opts)
