@@ -3,6 +3,7 @@ require 'prawn'
 require_relative "starkiller/editing"
 require_relative "starkiller/renderer"
 require_relative "starkiller/component"
+require_relative "starkiller/dice"
 Dir.glob("lib/starkiller/components/*.rb").each { |f| require_relative f.gsub("lib/", "") }
 
 module Starkiller
