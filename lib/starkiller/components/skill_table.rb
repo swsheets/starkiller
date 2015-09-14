@@ -6,9 +6,9 @@ module Starkiller
 
       SKILL_LABEL_OFFSET = 8
       SKILL_NAME_LEFT = 4
-      SKILL_CAREER_LEFT = 90
-      SKILL_RANK_LEFT = 106
-      SKILL_ROLL_LEFT = 117.5
+      SKILL_CAREER_LEFT = 78
+      SKILL_RANK_LEFT = 94
+      SKILL_ROLL_LEFT = 105.5
       SKILL_HEIGHT = 10
 
       LABEL_SIZE = 4
@@ -18,8 +18,8 @@ module Starkiller
         def render(pdf, character)
           within(pdf,
             top: DOCUMENT_TOP - 45,
-            left: 360,
-            width: DOCUMENT_WIDTH - 360,
+            left: 390,
+            width: DOCUMENT_WIDTH - 390,
             # 22.3 is the height of everything else in the table aside from the skill length
             height: 22.3 + (character[:skills][:general].length + character[:skills][:combat].length + character[:skills][:knowledge].length) * SKILL_HEIGHT
           ) do

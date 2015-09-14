@@ -19,7 +19,7 @@ character = {
       {name: "Astrogation (Int)", is_career: false, rank: 0, ability: 4},
       {name: "Athletics (Br)", is_career: false, rank: 0, ability: 4},
       {name: "Charm (Pr)", is_career: false, rank: 0, ability: 4},
-      {name: "Coercion (Will)", is_career: true, rank: 2, ability: 2, proficiency: 2},
+      {name: "Coercion (Will)", is_career: true, rank: 2, ability: 2, proficiency: 5},
       {name: "Computers (Int)", is_career: false, rank: 1, ability: 1, proficiency: 2},
       {name: "Cool (Pr)", is_career: false, rank: 0, ability: 1},
       {name: "Coordination (Ag)", is_career: false, rank: 1, ability: 1},
