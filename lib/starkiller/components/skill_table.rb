@@ -13,6 +13,16 @@ module Starkiller
       LABEL_SIZE = 4
       LABEL_COLOR = "aaaaaa"
 
+      PROFICIENCY_SCALE = 3.0
+      PROFICIENCY_POLYGON_POINTS = [
+        [0.5, 0],
+        [1.5, 0],
+        [2, 0 - Math.sqrt(3) / 2.0],
+        [1.5, 0 - Math.sqrt(3)],
+        [0.5, 0 - Math.sqrt(3)],
+        [0, 0 - Math.sqrt(3) / 2.0]
+      ]
+
       class << self
         def render(pdf, character)
           within(pdf,
@@ -156,6 +166,10 @@ module Starkiller
             size: 7.0,
             font: FONT_MINOR_TEXT
           )
+
+          pdf.polygon(*PROFICIENCY_POLYGON_POINTS.map { |x,y = a| [ SKILL_ROLL_LEFT + PROFICIENCY_SCALE * x, vertical_offset - 0.5 + PROFICIENCY_SCALE * y] })
+          pdf.fill_color "ffff00"
+          pdf.fill_and_stroke
         end
 
         def draw_skill_line(pdf, vertical_offset, opts)
