@@ -6,7 +6,12 @@ module Starkiller
       SKILL_LABEL_OFFSET = 8
       SKILL_NAME_LEFT = 4
       SKILL_CAREER_LEFT = 90
-      SKILL_RANK_LEFT = 110
+      SKILL_RANK_LEFT = 106
+      SKILL_ROLL_LEFT = 117.5
+      SKILL_HEIGHT = 10
+
+      LABEL_SIZE = 4
+      LABEL_COLOR = "aaaaaa"
 
       class << self
         def render(pdf, character)
@@ -14,7 +19,8 @@ module Starkiller
             top: DOCUMENT_TOP - 45,
             left: 360,
             width: DOCUMENT_WIDTH - 360,
-            height: 500
+            # 22.3 is the height of everything else in the table aside from the skill length
+            height: 22.3 + (character[:skills][:general].length + character[:skills][:combat].length + character[:skills][:knowledge].length) * SKILL_HEIGHT
           ) do
             draw_rectangle(pdf,
               top: 0,
@@ -37,28 +43,145 @@ module Starkiller
               left: SKILL_NAME_LEFT,
               font: FONT_MINOR_LABEL,
               width: 100,
-              size: 5,
-              color: "969696"
-           )
+              size: LABEL_SIZE,
+              color: LABEL_COLOR
+            )
 
             write(pdf, "CAREER?",
               top: 0 - SKILL_LABEL_OFFSET,
               left: SKILL_CAREER_LEFT,
               font: FONT_MINOR_LABEL,
               width: 100,
-              size: 5,
-              color: "969696"
-           )
+              size: LABEL_SIZE,
+              color: LABEL_COLOR
+            )
 
             write(pdf, "RANK",
               top: 0 - SKILL_LABEL_OFFSET,
               left: SKILL_RANK_LEFT,
               font: FONT_MINOR_LABEL,
               width: 100,
-              size: 5,
-              color: "969696"
-           )
+              size: LABEL_SIZE,
+              color: LABEL_COLOR
+            )
+
+            write(pdf, "RANK",
+              top: 0 - SKILL_LABEL_OFFSET,
+              left: SKILL_RANK_LEFT,
+              font: FONT_MINOR_LABEL,
+              width: 100,
+              size: LABEL_SIZE,
+              color: LABEL_COLOR
+            )
+
+            write(pdf, "TOTAL ROLL",
+              top: 0 - SKILL_LABEL_OFFSET,
+              left: SKILL_ROLL_LEFT,
+              font: FONT_MINOR_LABEL,
+              width: 100,
+              size: LABEL_SIZE,
+              color: LABEL_COLOR
+            )
+
+            vertical_offset = 0 - SKILL_LABEL_OFFSET - 6.5
+            skill_count = character[:skills][:general].length
+
+            character[:skills][:general].each_with_index do |s, i|
+              render_skill(pdf, s, vertical_offset)
+              vertical_offset -= SKILL_HEIGHT
+              draw_skill_line(pdf, vertical_offset, dashed: i != skill_count - 1)
+            end
+
+            write(pdf, "COMBAT SKILL",
+              top: vertical_offset,
+              left: SKILL_NAME_LEFT,
+              font: FONT_MINOR_LABEL,
+              width: 100,
+              size: LABEL_SIZE,
+              color: LABEL_COLOR
+            )
+
+            vertical_offset -= 5
+            skill_count = character[:skills][:combat].length
+
+            character[:skills][:combat].each_with_index do |s, i|
+              render_skill(pdf, s, vertical_offset)
+              vertical_offset -= SKILL_HEIGHT
+              draw_skill_line(pdf, vertical_offset, dashed: i != skill_count - 1)
+            end
+
+            write(pdf, "KNOWLEDGE SKILL",
+              top: vertical_offset,
+              left: SKILL_NAME_LEFT,
+              font: FONT_MINOR_LABEL,
+              width: 100,
+              size: LABEL_SIZE,
+              color: LABEL_COLOR
+            )
+
+            vertical_offset -= 5
+            skill_count = character[:skills][:knowledge].length
+
+            character[:skills][:knowledge].each_with_index do |s, i|
+              render_skill(pdf, s, vertical_offset)
+              vertical_offset -= SKILL_HEIGHT
+              draw_skill_line(pdf, vertical_offset, dashed: i != skill_count - 1, is_last: skill_count - 1 == i)
+            end
           end
+        end
+
+        def render_skill(pdf, skill, vertical_offset)
+          write(pdf, skill[:name],
+            top: vertical_offset,
+            left: SKILL_NAME_LEFT,
+            width: 100,
+            size: 7.0,
+            font: FONT_MINOR_TEXT
+          )
+        end
+
+        def draw_skill_line(pdf, vertical_offset, opts)
+          top = vertical_offset + 2.2
+          line_height = 2.6
+          length = opts[:is_last] ? line_height : line_height * 2
+
+          draw_line(pdf,
+            opts.merge(
+              top: top,
+              left: 0 + LINE_WIDTH / 2.0,
+              length: full_width - LINE_WIDTH / 2.0,
+              stroke_color: "000000",
+              direction: :horizontal,
+              line_width: 0.2
+            )
+          )
+
+          draw_line(pdf,
+            top: top + line_height,
+            left: SKILL_CAREER_LEFT - 0.5,
+            length: length,
+            stroke_color: "000000",
+            direction: :vertical,
+            line_width: 0.2
+          )
+
+          draw_line(pdf,
+            top: top + line_height,
+            left: SKILL_RANK_LEFT - 1.5,
+            length: length,
+            stroke_color: "000000",
+            direction: :vertical,
+            line_width: 0.2
+          )
+
+          draw_line(pdf,
+            top: top + line_height,
+            left: SKILL_ROLL_LEFT - 1.5,
+            length: length,
+            stroke_color: "000000",
+            direction: :vertical,
+            line_width: 0.2
+          )
         end
       end
     end

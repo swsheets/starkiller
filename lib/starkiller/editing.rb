@@ -13,6 +13,7 @@ module Starkiller
     FONT_MAJOR_TEXT = ENV["FONT_MAJOR_TEXT"]
     FONT_MAJOR_NUMBER = ENV["FONT_MAJOR_NUMBER"]
     FONT_MINOR_LABEL = ENV["FONT_MINOR_LABEL"]
+    FONT_MINOR_TEXT = ENV["FONT_MINOR_TEXT"]
 
     COLOR_TABLE_BACKGROUND = "fcfffc"
     COLOR_TABLE_FOREGROUND = "324357"
@@ -79,13 +80,20 @@ module Starkiller
       pdf.line_width = opts[:line_width] || LINE_WIDTH
 
       origin = [opts[:left], opts[:top]]
+
       if(opts[:direction] == :vertical)
         destination = [origin[0], origin[1] - opts[:length]]
       else
         destination = [origin[0] + opts[:length], origin[1]]
       end
+
+      if(opts[:dashed])
+        pdf.dash(1, space: 2)
+      end
+
       pdf.line origin, destination
       pdf.stroke
+      pdf.undash
     end
 
     def write(pdf, text, opts)
