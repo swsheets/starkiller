@@ -6,13 +6,18 @@ module Starkiller
 
       LABEL_SIZE = 5
       LABEL_COLOR = "aaaaaa"
+      LABEL_OFFSET_LEFT = 2
+
+      LINE_LENGTH = 2.6
 
       ATTACK_LABEL_OFFSET = 8
       ATTACK_LABEL_MARGIN_BOTTOM = 5
       ATTACK_RANGE_LEFT = 4
+      ATTACK_SPECIALS_LEFT = ATTACK_RANGE_LEFT
       ATTACK_SKILL_LEFT = 35
       ATTACK_NAME_LEFT = 85
-      ATTACK_DAMAGE_RIGHT = 30
+      ATTACK_ROLL_RIGHT = 44
+      ATTACK_DAMAGE_RIGHT = 29
       ATTACK_CRITICAL_RIGHT = 15
       ATTACK_HEIGHT = 40
 
@@ -52,8 +57,12 @@ module Starkiller
         end
 
         def render_attack(pdf, attack, vertical_offset, opts)
-          top = vertical_offset - ATTACK_LABEL_OFFSET
-          values_top = top - ATTACK_LABEL_MARGIN_BOTTOM
+          render_attack_first_row(pdf, attack, vertical_offset - ATTACK_LABEL_OFFSET)
+          render_attack_second_row(pdf, attack, vertical_offset - ATTACK_LABEL_OFFSET - 17, opts)
+        end
+
+        def render_attack_first_row(pdf, attack, vertical_offset)
+          top = vertical_offset
 
           write(pdf, "RANGE",
             top: top,
@@ -62,14 +71,6 @@ module Starkiller
             width: 100,
             size: LABEL_SIZE,
             color: LABEL_COLOR
-          )
-
-          write(pdf, attack[:range],
-            top: values_top,
-            left: ATTACK_RANGE_LEFT,
-            font: FONT_MINOR_TEXT,
-            size: 7.0,
-            width: ATTACK_SKILL_LEFT - ATTACK_RANGE_LEFT
           )
 
           write(pdf, "SKILL",
@@ -81,14 +82,6 @@ module Starkiller
             color: LABEL_COLOR
           )
 
-          write(pdf, attack[:skill],
-            top: values_top,
-            left: ATTACK_SKILL_LEFT,
-            font: FONT_MINOR_TEXT,
-            size: 7.0,
-            width: 100
-          )
-
           write(pdf, "WEAPON",
             top: top,
             left: ATTACK_NAME_LEFT,
@@ -98,31 +91,13 @@ module Starkiller
             color: LABEL_COLOR
           )
 
-          write(pdf, attack[:name],
-            top: values_top,
-            left: ATTACK_NAME_LEFT,
-            font: FONT_MINOR_TEXT,
-            size: 7.0,
-            width: full_width - ATTACK_NAME_LEFT - ATTACK_DAMAGE_RIGHT - 2
-          )
-
           write(pdf, "DAM",
             top: top,
-            left: full_width - ATTACK_DAMAGE_RIGHT,
+            left: full_width - ATTACK_DAMAGE_RIGHT + 1,
             font: FONT_MINOR_LABEL,
-            width: ATTACK_DAMAGE_RIGHT - ATTACK_CRITICAL_RIGHT - 2,
-            align: :center,
+            width: ATTACK_DAMAGE_RIGHT - ATTACK_CRITICAL_RIGHT,
             size: LABEL_SIZE,
             color: LABEL_COLOR
-          )
-
-          write(pdf, attack[:damage].to_s,
-            top: values_top,
-            left: full_width - ATTACK_DAMAGE_RIGHT,
-            font: FONT_MINOR_TEXT,
-            size: 7.0,
-            width: ATTACK_DAMAGE_RIGHT - ATTACK_CRITICAL_RIGHT - 2,
-            align: :center
           )
 
           write(pdf, "CRIT",
@@ -135,8 +110,44 @@ module Starkiller
             color: LABEL_COLOR
           )
 
+          top = top - ATTACK_LABEL_MARGIN_BOTTOM
+
+          write(pdf, attack[:range],
+            top: top,
+            left: ATTACK_RANGE_LEFT,
+            font: FONT_MINOR_TEXT,
+            size: 7.0,
+            width: ATTACK_SKILL_LEFT - ATTACK_RANGE_LEFT
+          )
+
+
+          write(pdf, attack[:skill],
+            top: top,
+            left: ATTACK_SKILL_LEFT,
+            font: FONT_MINOR_TEXT,
+            size: 7.0,
+            width: 100
+          )
+
+          write(pdf, attack[:name],
+            top: top,
+            left: ATTACK_NAME_LEFT,
+            font: FONT_MINOR_TEXT,
+            size: 7.0,
+            width: full_width - ATTACK_NAME_LEFT - ATTACK_DAMAGE_RIGHT - 2
+          )
+
+          write(pdf, attack[:damage].to_s,
+            top: top,
+            left: full_width - ATTACK_DAMAGE_RIGHT,
+            font: FONT_MINOR_TEXT,
+            size: 7.0,
+            width: ATTACK_DAMAGE_RIGHT - ATTACK_CRITICAL_RIGHT - 2,
+            align: :center
+          )
+
           write(pdf, attack[:critical].to_s,
-            top: values_top,
+            top: top,
             left: full_width - ATTACK_CRITICAL_RIGHT,
             font: FONT_MINOR_TEXT,
             size: 7.0,
@@ -144,10 +155,10 @@ module Starkiller
             align: :center
           )
 
-          second_row_top = top - 13
+          top = top - 7.5
 
           draw_line(pdf,
-            top: second_row_top,
+            top: top,
             left: 0 + LINE_WIDTH / 2.0,
             length: full_width - LINE_WIDTH / 2.0,
             stroke_color: COLOR_TABLE_FOREGROUND,
@@ -156,43 +167,64 @@ module Starkiller
             dashed: true
           )
 
-          length = 5.2
-          offset = 2
+          top = top + LINE_LENGTH
 
           draw_line(pdf,
-            top: second_row_top + length / 2.0,
-            left: ATTACK_SKILL_LEFT - offset,
-            length: length,
+            top: top,
+            left: ATTACK_SKILL_LEFT - LABEL_OFFSET_LEFT,
+            length: LINE_LENGTH * 2,
             stroke_color: "000000",
             direction: :vertical,
             line_width: 0.2
           )
 
           draw_line(pdf,
-            top: second_row_top + length / 2.0,
-            left: ATTACK_NAME_LEFT - offset,
-            length: length,
+            top: top,
+            left: ATTACK_NAME_LEFT - LABEL_OFFSET_LEFT,
+            length: LINE_LENGTH * 2,
             stroke_color: "000000",
             direction: :vertical,
             line_width: 0.2
           )
 
           draw_line(pdf,
-            top: second_row_top + length / 2.0,
-            left: full_width - ATTACK_DAMAGE_RIGHT - offset,
-            length: length,
+            top: top,
+            left: full_width - ATTACK_DAMAGE_RIGHT - LABEL_OFFSET_LEFT,
+            length: LINE_LENGTH * 2,
             stroke_color: "000000",
             direction: :vertical,
             line_width: 0.2
           )
 
           draw_line(pdf,
-            top: second_row_top + length / 2.0,
-            left: full_width - ATTACK_CRITICAL_RIGHT - offset,
-            length: length,
+            top: top,
+            left: full_width - ATTACK_CRITICAL_RIGHT - LABEL_OFFSET_LEFT,
+            length: LINE_LENGTH * 2,
             stroke_color: "000000",
             direction: :vertical,
             line_width: 0.2
+          )
+        end
+
+        def render_attack_second_row(pdf, attack, vertical_offset, opts)
+          top = vertical_offset
+
+          write(pdf, "SPECIALS",
+            top: top,
+            left: ATTACK_SPECIALS_LEFT,
+            font: FONT_MINOR_LABEL,
+            width: 100,
+            size: LABEL_SIZE,
+            color: LABEL_COLOR
+          )
+
+          write(pdf, "TOTAL ROLL",
+            top: top,
+            left: full_width - ATTACK_ROLL_RIGHT,
+            font: FONT_MINOR_LABEL,
+            width: 100,
+            size: LABEL_SIZE,
+            color: LABEL_COLOR
           )
         end
       end
