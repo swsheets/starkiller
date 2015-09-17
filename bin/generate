@@ -55,7 +55,12 @@ character = {
       {name: "Warfare (Int)", is_career: false, rank: 0, ability: 2},
       {name: "Xenology (Int)", is_career: false, rank: 0, ability: 2},
     ]
-  }
+  },
+  attacks: [
+    {name: "Stilleto", range: "Medium", skill: "Melee", ability: 2, proficiency: 5, specials: "Pierce 2", damage: "+3", critical: 5},
+    {name: "Merr-Sonn Model 53 \"Quicktrigger\" Blaster Pistol", range: "Medium", skill: "Melee", ability: 2, proficiency: 5, specials: "Stun setting, superior (+1 advantage on successful rolls), cumbersome 2, accurate 1 (+1 boost die)", damage: "+3", critical: 5},
+    {name: "Lightsaber o o o o o o o o o o o o o o o o o o o o o o o o o", range: "Extreme", skill: "Lightsaber", ability: 2, proficiency: 5, specials: "Pierce 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 ", damage: 3, critical: "5*"},
+  ]
 }
 
 Starkiller.render(character)
