@@ -72,7 +72,7 @@ module Starkiller
 
             write(pdf, "TOTAL ROLL",
               top: 0 - SKILL_LABEL_OFFSET,
-              left: SKILL_ROLL_LEFT,
+              left: SKILL_ROLL_LEFT + 1,
               font: FONT_MINOR_LABEL,
               width: 100,
               size: LABEL_SIZE,

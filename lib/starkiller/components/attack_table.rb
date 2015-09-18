@@ -26,13 +26,12 @@ module Starkiller
       class << self
         def render(pdf, character)
           left = DOCUMENT_LEFT + Starkiller::Components::Characteristics::BOX_SIZE + Starkiller::Components::Characteristics::PADDING + 10
-          attack_count = character[:attacks].length
 
           within(pdf,
             top: DOCUMENT_TOP - 44,
             left: left,
             width: Starkiller::Components::SkillTable::COMPONENT_LEFT - left - 10,
-            height: [MIN_ATTACKS, attack_count].max * ATTACK_HEIGHT + 4
+            height: MIN_ATTACKS * ATTACK_HEIGHT + 4
           ) do
             draw_rectangle(pdf,
               top: 0,
@@ -53,11 +52,12 @@ module Starkiller
             vertical_offset = -8
 
             character[:attacks].each_with_index do |a, i|
+              break if i >= MIN_ATTACKS
               render_attack(pdf, a, vertical_offset)
               vertical_offset -= ATTACK_HEIGHT
             end
 
-            (8 - attack_count).times do
+            (MIN_ATTACKS - character[:attacks].length).times do
               render_attack(pdf, {}, vertical_offset, is_last: true)
               vertical_offset -= ATTACK_HEIGHT
             end
