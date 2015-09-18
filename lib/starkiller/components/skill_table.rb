@@ -14,7 +14,7 @@ module Starkiller
       SKILL_HEIGHT = 10
 
       LABEL_SIZE = 5
-      LABEL_COLOR = "aaaaaa"
+      LABEL_COLOR = "999999"
 
       class << self
         def render(pdf, character)

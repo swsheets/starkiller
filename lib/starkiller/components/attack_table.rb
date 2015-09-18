@@ -5,7 +5,7 @@ module Starkiller
       extend Starkiller::Dice
 
       LABEL_SIZE = 5
-      LABEL_COLOR = "aaaaaa"
+      LABEL_COLOR = "999999"
       LABEL_OFFSET_LEFT = 2
 
       LINE_LENGTH = 2.6
