@@ -97,6 +97,8 @@ module Starkiller
     end
 
     def write(pdf, text, opts)
+      return if text.nil?
+
       pdf.fill_color = opts[:color] || "000000"
 
       factor = opts[:character_width] || 1.0
@@ -115,6 +117,14 @@ module Starkiller
             size: opts[:size] || 14,
             align: opts[:align] || :left
           )
+
+          if(opts[:debug])
+            pdf.fill_rectangle(
+              [(opts[:left] + (opts[:padding] || 0)) / factor, opts[:top] - (opts[:padding] || 0)],
+              opts[:width] / factor,
+              10
+            )
+          end
         end
       end
     end

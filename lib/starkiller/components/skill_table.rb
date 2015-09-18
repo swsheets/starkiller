@@ -178,7 +178,7 @@ module Starkiller
               top: top,
               left: 0 + LINE_WIDTH / 2.0,
               length: full_width - LINE_WIDTH / 2.0,
-              stroke_color: "000000",
+              stroke_color: COLOR_TABLE_FOREGROUND,
               direction: :horizontal,
               line_width: 0.2
             )
@@ -188,7 +188,7 @@ module Starkiller
             top: top + line_height,
             left: SKILL_CAREER_LEFT - 0.5,
             length: length,
-            stroke_color: "000000",
+            stroke_color: COLOR_TABLE_FOREGROUND,
             direction: :vertical,
             line_width: 0.2
           )
@@ -197,7 +197,7 @@ module Starkiller
             top: top + line_height,
             left: SKILL_RANK_LEFT - 1.5,
             length: length,
-            stroke_color: "000000",
+            stroke_color: COLOR_TABLE_FOREGROUND,
             direction: :vertical,
             line_width: 0.2
           )
@@ -206,7 +206,7 @@ module Starkiller
             top: top + line_height,
             left: SKILL_ROLL_LEFT - 1.5,
             length: length,
-            stroke_color: "000000",
+            stroke_color: COLOR_TABLE_FOREGROUND,
             direction: :vertical,
             line_width: 0.2
           )
