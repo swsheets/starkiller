@@ -4,16 +4,16 @@ module Starkiller
       include Starkiller::Component
       extend Starkiller::Dice
 
-      COMPONENT_LEFT = 390
+      COMPONENT_LEFT = 380
 
       SKILL_LABEL_OFFSET = 8
       SKILL_NAME_LEFT = 4
-      SKILL_CAREER_LEFT = 78
-      SKILL_RANK_LEFT = 94
-      SKILL_ROLL_LEFT = 105.5
+      SKILL_CAREER_LEFT = 82.5
+      SKILL_RANK_LEFT = 102
+      SKILL_ROLL_LEFT = 115.5
       SKILL_HEIGHT = 10
 
-      LABEL_SIZE = 4
+      LABEL_SIZE = 5
       LABEL_COLOR = "aaaaaa"
 
       class << self
@@ -54,7 +54,8 @@ module Starkiller
               top: 0 - SKILL_LABEL_OFFSET,
               left: SKILL_CAREER_LEFT,
               font: FONT_MINOR_LABEL,
-              width: 100,
+              width: SKILL_RANK_LEFT - SKILL_CAREER_LEFT,
+              align: :center,
               size: LABEL_SIZE,
               color: LABEL_COLOR
             )
@@ -63,16 +64,8 @@ module Starkiller
               top: 0 - SKILL_LABEL_OFFSET,
               left: SKILL_RANK_LEFT,
               font: FONT_MINOR_LABEL,
-              width: 100,
-              size: LABEL_SIZE,
-              color: LABEL_COLOR
-            )
-
-            write(pdf, "RANK",
-              top: 0 - SKILL_LABEL_OFFSET,
-              left: SKILL_RANK_LEFT,
-              font: FONT_MINOR_LABEL,
-              width: 100,
+              width: SKILL_ROLL_LEFT - SKILL_RANK_LEFT,
+              align: :center,
               size: LABEL_SIZE,
               color: LABEL_COLOR
             )
@@ -145,8 +138,9 @@ module Starkiller
           if(skill[:is_career])
             write(pdf, "X",
               top: vertical_offset,
-              left: SKILL_CAREER_LEFT + 5,
-              width: 20,
+              left: SKILL_CAREER_LEFT,
+              width: SKILL_RANK_LEFT - SKILL_CAREER_LEFT,
+              align: :center,
               size: 7.0,
               font: FONT_MAJOR_TEXT
             )
@@ -154,8 +148,9 @@ module Starkiller
 
           write(pdf, skill[:rank].to_s,
             top: vertical_offset,
-            left: SKILL_RANK_LEFT + 2.5,
-            width: 20,
+            left: SKILL_RANK_LEFT,
+            width: SKILL_ROLL_LEFT - SKILL_RANK_LEFT,
+            align: :center,
             size: 7.0,
             font: FONT_MINOR_TEXT
           )
@@ -195,7 +190,7 @@ module Starkiller
 
           draw_line(pdf,
             top: top + line_height,
-            left: SKILL_RANK_LEFT - 1.5,
+            left: SKILL_RANK_LEFT,
             length: length,
             stroke_color: COLOR_TABLE_FOREGROUND,
             direction: :vertical,
@@ -204,7 +199,7 @@ module Starkiller
 
           draw_line(pdf,
             top: top + line_height,
-            left: SKILL_ROLL_LEFT - 1.5,
+            left: SKILL_ROLL_LEFT,
             length: length,
             stroke_color: COLOR_TABLE_FOREGROUND,
             direction: :vertical,

@@ -26,7 +26,7 @@ character = {
       {name: "Deception (Cun)", is_career: false, rank: 1, ability: 1},
       {name: "Leadership (Pr)", is_career: false, rank: 0, ability: 3},
       {name: "Mechanics (Int)", is_career: false, rank: 0, ability: 3},
-      {name: "Medicine (Intellect)", is_career: false, rank: 0, ability: 2},
+      {name: "Medicine (Int)", is_career: false, rank: 0, ability: 2},
       {name: "Negotiation (Pr)", is_career: false, rank: 0, ability: 2},
       {name: "Perception (Cun)", is_career: false, rank: 0, ability: 2},
       {name: "Piloting: Planetary (Ag)", is_career: false, rank: 0, ability: 2},
