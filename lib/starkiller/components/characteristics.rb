@@ -52,7 +52,7 @@ module Starkiller
               left: 0,
               width: full_width,
               height: full_height,
-              fill_color: "42634D"
+              fill_color: "4A664B"
             )
 
             # Label background
@@ -82,7 +82,7 @@ module Starkiller
             pdf.fill_and_stroke_circle([BOX_SIZE / 2.0, 0 - 19.5], 18)
 
             # Characteristic Value
-            write(pdf, characteristic[:value].to_s,
+            write(pdf, characteristic[:value],
               top: -10,
               left: 13,
               width: 25.44,

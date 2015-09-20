@@ -108,7 +108,7 @@ module Starkiller
       pdf.transformation_matrix(factor, 0, 0, 1, translation, 0) do
         pdf.font(opts[:font] || "Helvetica") do
           pdf.text_box(
-            text,
+            text.to_s,
             overflow: :shrink_to_fit,
             single_line: true,
             at: [(opts[:left] + (opts[:padding] || 0)) / factor, opts[:top] - (opts[:padding] || 0)],

@@ -28,7 +28,7 @@ module Starkiller
           left = DOCUMENT_LEFT + Starkiller::Components::Characteristics::BOX_SIZE + Starkiller::Components::Characteristics::PADDING + 10
 
           within(pdf,
-            top: DOCUMENT_TOP - 44,
+            top: DOCUMENT_TOP - 44 - 55 - 10,
             left: left,
             width: Starkiller::Components::SkillTable::COMPONENT_LEFT - left - 10,
             height: MIN_ATTACKS * ATTACK_HEIGHT + 4
@@ -146,7 +146,7 @@ module Starkiller
             width: full_width - ATTACK_NAME_LEFT - ATTACK_DAMAGE_RIGHT - 2
           )
 
-          write(pdf, attack[:damage].to_s,
+          write(pdf, attack[:damage],
             top: top,
             left: full_width - ATTACK_DAMAGE_RIGHT,
             font: FONT_MINOR_TEXT,
@@ -155,7 +155,7 @@ module Starkiller
             align: :center
           )
 
-          write(pdf, attack[:critical].to_s,
+          write(pdf, attack[:critical],
             top: top,
             left: full_width - ATTACK_CRITICAL_RIGHT,
             font: FONT_MINOR_TEXT,

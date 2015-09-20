@@ -146,7 +146,7 @@ module Starkiller
             )
           end
 
-          write(pdf, skill[:rank].to_s,
+          write(pdf, skill[:rank],
             top: vertical_offset,
             left: SKILL_RANK_LEFT,
             width: SKILL_ROLL_LEFT - SKILL_RANK_LEFT,

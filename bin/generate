@@ -8,6 +8,7 @@ character = {
   species: "Human",
   career: "Bounty Huntin' Force User",
   specializations: "Smuggler, Doctor, Priest",
+  soak: 5,
   characteristic_brawn: 1,
   characteristic_agility: 2,
   characteristic_cunning: 3,
