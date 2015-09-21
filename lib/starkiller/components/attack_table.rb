@@ -28,7 +28,7 @@ module Starkiller
           left = DOCUMENT_LEFT + Starkiller::Components::Characteristics::BOX_SIZE + Starkiller::Components::Characteristics::PADDING + 10
 
           within(pdf,
-            top: DOCUMENT_TOP - 44 - 55 - 10,
+            top: DOCUMENT_TOP - 44 - 58,
             left: left,
             width: Starkiller::Components::SkillTable::COMPONENT_LEFT - left - 10,
             height: MIN_ATTACKS * ATTACK_HEIGHT + 4
@@ -46,7 +46,7 @@ module Starkiller
             table_header(pdf, "ATTACKS",
               horizontal_center: full_width / 2.0,
               vertical_center: 0,
-              width: 40
+              width: 46
             )
 
             vertical_offset = -8

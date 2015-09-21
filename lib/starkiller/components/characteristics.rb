@@ -61,7 +61,7 @@ module Starkiller
               left: LABEL_PADDING,
               width: full_width - LABEL_PADDING * 2,
               height: LABEL_HEIGHT,
-              fill_color: "891818"
+              fill_color: "800000"
             )
 
             # Label
