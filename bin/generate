@@ -59,7 +59,6 @@ character = {
       {name: "Lore (Int)", is_career: false, rank: 0, ability: 2},
       {name: "Outer Rim (Int)", is_career: false, rank: 0, ability: 2},
       {name: "Underworld (Int)", is_career: false, rank: 0, ability: 2},
-      {name: "Warfare (Int)", is_career: false, rank: 0, ability: 2},
       {name: "Xenology (Int)", is_career: false, rank: 0, ability: 2},
     ]
   },
@@ -67,6 +66,11 @@ character = {
     {name: "Stilleto", range: "Medium", skill: "Melee", ability: 2, proficiency: 5, specials: "Pierce 2", damage: "+3", critical: 5},
     {name: "Merr-Sonn Model 53 \"Quicktrigger\" Blaster Pistol", range: "Medium", skill: "Melee", ability: 2, proficiency: 5, specials: "Stun setting, superior (+1 advantage on successful rolls), cumbersome 2, accurate 1 (+1 boost die)", damage: "+3", critical: 5},
     {name: "Lightsaber o o o o o o o o o o o o o o o o o o o o o o o o o", range: "Extreme", skill: "Lightsaber", ability: 2, proficiency: 5, specials: "Pierce 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 ", damage: 3, critical: "5*"},
+  ],
+  talents: [
+    {name: "Killin", book_and_page: "EotE p36", description: "asd"},
+    {name: "Deadly Accuracy (Ranged [Light, Heavy])", book_and_page: "Edge of the Empire pg 78", description: "Once per round, perform the Body Guard maneuver to guard an engaged character. Suffer a number of strain no greater than ranks of BG, then until the beginning of the next turn upgrade the difficulty of combat checks targeting the character by that number."},
+    {name: "Killin", book_and_page: "EotE p35", description: "Saber Throw action, Make a Lightsaber attack at medium range adding Force Dice equal to force rating, spend 1 force point and hit, spend 1 to retrieve back to hand."},
   ]
 }
 

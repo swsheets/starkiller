@@ -1,3 +1,6 @@
+require_relative 'characteristics'
+require_relative 'skill_table'
+
 module Starkiller
   module Components
     module AttackTable
@@ -23,15 +26,21 @@ module Starkiller
 
       MIN_ATTACKS = 8
 
-      class << self
-        def render(pdf, character)
-          left = DOCUMENT_LEFT + Starkiller::Components::Characteristics::BOX_SIZE + Starkiller::Components::Characteristics::PADDING + 10
+      TOP = Starkiller::Editing::DOCUMENT_TOP - 44 - 58
+      LEFT = Starkiller::Editing::DOCUMENT_LEFT + Starkiller::Components::Characteristics::BOX_SIZE + Starkiller::Components::Characteristics::PADDING + 10
+      HEIGHT = MIN_ATTACKS * ATTACK_HEIGHT + 4
+      WIDTH = Starkiller::Components::SkillTable::COMPONENT_LEFT - LEFT - 10
+      BOTTOM = TOP - HEIGHT
+      RIGHT = LEFT + WIDTH
 
+      class << self
+
+        def render(pdf, character)
           within(pdf,
-            top: DOCUMENT_TOP - 44 - 58,
-            left: left,
-            width: Starkiller::Components::SkillTable::COMPONENT_LEFT - left - 10,
-            height: MIN_ATTACKS * ATTACK_HEIGHT + 4
+            top: TOP,
+            left: LEFT,
+            width: WIDTH,
+            height: HEIGHT
           ) do
             draw_rectangle(pdf,
               top: 0,
